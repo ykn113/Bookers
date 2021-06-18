@@ -1,3 +1,5 @@
+<%= flash[:notice] %>
+ 
   <div class="title">
       <h2>Books</h2>
   </div>
@@ -23,6 +25,13 @@
   <div class="title">
     <h3>New Book</h3>
   </div>
+  <% if @book.errors.any? %>
+  <%= @book.errors.count %> error prohibited this book from being saved:
+  <% @book.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
+  
 <%= form_with model:@book, local:true do |f| %>
 
   <p>Title</p>
